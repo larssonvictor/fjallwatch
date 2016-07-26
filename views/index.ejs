@@ -10,8 +10,52 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-xs-1"></div>
-        <div class="col-md-4 col-xs-1"></div>
+        <div class="col-md-4 col-xs-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">Webcamera</div>
+            <div class="panel-body">
+              <a href="http://hzurl.se/kamera" class="btn btn-primary">Webcamera</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">Temperatur Hjortronvägen Klevfjällsbyn</div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Mätpunkt</th>
+                    <th>°C</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>1</th>
+                    <td>Inomhus</td>
+                    <td class="inomhus-temp"></td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>Utomhus</td>
+                    <td class="utomhus-temp"></td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>Badtunna</td>
+                    <td class="badtunna-temp"></td>
+                  </tr>
+                  <tr class="info">
+                    <td></td>
+                    <td>Updaterad</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div>
+          </div>
+        </div>
         <div class="col-md-4 col-xs-1"></div>
       </div>
       <div class="row">
@@ -24,5 +68,7 @@
 
     <script src="/lib/jQuery/jquery.min.js"></script>
     <script src="/lib/Bootstrap/js/bootstrap.js"></script>
+    <script src="/javascripts/tableController.js"></script>
+
   </body>
 </html>
