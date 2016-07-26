@@ -20,8 +20,15 @@ function updateTable(){
 }
 
 function fetchInomhusTemp(callback){
-	$.get(getDomain()+'Temp_Inne',function(data){
-		callback(data);
+	$.ajax({
+		url: getDomain()+'Temp_Inne',
+		crossDomain: true,
+		xhrFields: {
+      		withCredentials: true
+	   	},
+	   	success: function(data){
+	   		callback(data);
+	   	}
 	});
 }
 
