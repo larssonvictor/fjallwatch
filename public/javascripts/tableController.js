@@ -6,40 +6,64 @@ function main() {
 	updateTable();
 
 	var interval = setInterval(function(){
-
+		updateTable();
 	},60000);
 
 }
 
 function getDomain(){
-	return 'http://fjallet.mine.nu:81/temperature/get/';
+	return 'http://localhost:8282/api';
 }
 
 function updateTable(){
-	fetchInomhusTemp(setInomhusTemp);
+	fetchHouseTemp(setHouseTemp);
+	fetchOuterTemp(setOuterTemp);
+	fetchCameraImg(setCameraImg);
 }
 
-function fetchInomhusTemp(callback){
+function fetchHouseTemp(callback){
 	$.ajax({
-		url: getDomain()+'Temp_Inne',
-		crossDomain: true,
-		xhrFields: {
-      		withCredentials: true
-	   	},
+		url: getDomain()+'/innerTemperature',
+		type: 'GET',
 	   	success: function(data){
 	   		callback(data);
 	   	}
 	});
 }
 
-function fetchUtomhusTemp(callback){
-
+function fetchOuterTemp(callback){
+	$.ajax({
+		url: getDomain()+'/outerTemperature',
+		type: 'GET',
+	   	success: function(data){
+	   		callback(data);
+	   	}
+	});
 }
 
 function fetchBadtunnaTemp(callback){
-
+	//TODO
 }
 
-function setInomhusTemp(value){
- console.log(value);
+function fetchCameraImg(callback) {
+	$.ajax({
+		url: getDomain()+'/cameraImage',
+		type: 'GET',
+		success: function (data) {
+			console.log(data);
+			callback(data);
+		}
+	});
+}
+
+function setHouseTemp(obj){
+ 	$('.house-temp').text(obj.temperature);
+}
+
+function setOuterTemp(obj){
+	$('.outer-temp').text(obj.temperature);
+}
+
+function setCameraImg(src) {
+	$('.camera-img').attr('src', src);
 }

@@ -6,3 +6,44 @@ body {
 a {
   color: #00B7FF;
 }
+
+.camera-img{
+	padding-bottom: 15px;
+}
+
+.houseTempPanel{
+
+}
+
+.dyn-font-size{
+	font-size: 30px;
+    font-size: 3.5vw;
+}
+
+.center{
+	text-align: center;
+}
+
+.green-background{
+	background-color: #5CB85C !important;
+}
+
+.dark-green-background{
+	background-color: #4CAE4C !important;
+}
+
+.blue-background{
+	background-color: #5BC0DE !important;
+}
+
+.dark-blue-background{
+	background-color: #46B8DA !important;
+}
+
+.yellow-background{
+	background-color: #F0AD4E !important;
+}
+
+.dark-yellow-background{
+	background-color: #EEA236 !important;
+}
