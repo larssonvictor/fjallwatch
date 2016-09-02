@@ -32,6 +32,28 @@ router.route('/outerTemperature')
 		});
 	});
 
+router.route('/outerTemperature/:outlier')
+	.get(function(req, res){
+		if (req.params.outlier === 'min' || req.params.outlier === 'max') {
+			temperature.getOuterTemperatureOutliers(req.params.outlier,function(data){
+				res.json(data);
+			});
+		}else{
+			res.json({error:'wrong identifier, use "min" or "max"'})
+		}	
+	});	
+
+router.route('/innerTemperature/:outlier')
+	.get(function(req, res){
+		if (req.params.outlier === 'min' || req.params.outlier === 'max') {
+			temperature.getInnerTemperatureOutliers(req.params.outlier,function(data){
+				res.json(data);
+			});
+		}else{
+			res.json({error:'wrong identifier, use "min" or "max"'})
+		}	
+	});		
+
 router.route('/cameraImage')
 	.get(function(req, res){
 		utilities.getCameraImage(function(data){

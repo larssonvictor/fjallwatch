@@ -3,6 +3,8 @@ var https = require("https");
 var fs = require('fs');
 var exports = module.exports = {};
 
+var domain = 'http://fjallet.mine.nu:81';
+
 init();
 
 function init() {
@@ -11,7 +13,7 @@ function init() {
 
 exports.getInnerTemperature = function(callback){
 	var request = new XMLHttpRequest();
-	request.open('GET', 'http://fjallet.mine.nu:81/temperature/get/Temp_Inne', true);
+	request.open('GET', domain + '/temperature/get/Temp_Inne', true);
 	request.onload = function() {
 		if(request.status >= 200 && request.status < 400){
 			//Success
@@ -35,7 +37,7 @@ exports.getInnerTemperature = function(callback){
 
 exports.getOuterTemperature = function(callback){
 	var request = new XMLHttpRequest();
-	request.open('GET', 'http://fjallet.mine.nu:81/temperature/get/Temp_Ute', true);
+	request.open('GET', domain + '/temperature/get/Temp_Ute', true);
 	request.onload = function() {
 		if(request.status >= 200 && request.status < 400){
 			//Success
@@ -57,7 +59,52 @@ exports.getOuterTemperature = function(callback){
 	request.send();
 };
 
+exports.getInnerTemperatureOutliers = function(outlier,callback){
+	var request = new XMLHttpRequest();
+	request.open('GET', domain + '/temperature/get/Temp_Inne/'+outlier, true);
+	request.onload = function(){
+		if(request.status >= 200 && request.status < 400){
+			//Success
+			var x = request.responseText.split('|');
+			var obj = {
+				code: x[1],
+				status: x[2],
+				outlier_temperature: x[3]
+			}
+			// console.log('ute temp: '+ obj.temperature);
+			callback(obj);
+		} else {
+			console.log("Fail at " + request.responseText);
+		}
+	}
+	request.onerror = function() {
+		console.log("Error while fetching "+ outlier +" outer temperature");
+	}
+	request.send();
+};
+
+exports.getOuterTemperatureOutliers = function(outlier,callback){
+	var request = new XMLHttpRequest();
+	request.open('GET', domain + '/temperature/get/Temp_Ute/'+outlier,true);
+	request.onload = function(){
+		if(request.status >= 200 && request.status < 400){
+			//Success
+			var x = request.responseText.split('|');
+			var obj = {
+				code: x[1],
+				status: x[2],
+				outlier_temperature: x[3]
+			}
+			// console.log('ute temp: '+ obj.temperature);
+			callback(obj);
+		} else {
+			console.log("Fail at " + request.responseText);
+		}
+	}
+	request.onerror = function() {
+		console.log("Error while fetching "+ outlier +" outer temperature");
+	}
+	request.send();
+};
+
 /* Private Functions */
-function saveToDb(arguments) {
-	
-}

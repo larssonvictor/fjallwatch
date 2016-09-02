@@ -32,7 +32,7 @@ function main() {
 }
 
 function getDomain(){
-	return 'http://localhost:8282/api';
+	return 'http://192.168.1.2:8282/api';
 }
 
 function updateTable(){
@@ -40,6 +40,11 @@ function updateTable(){
 	fetchOuterTemp(setOuterTemp);
 	fetchCameraImg(setCameraImg);
 	fetchHotTub(setHotTubTemp);
+
+	//Min and max
+	fetchHouseTempMinMax(setHouseTempMin, setHouseTempMax);
+	fetchOuterTempMinMax(setOuterTempMin, setOuterTempMax);
+
 }
 
 function route(dest) {
@@ -70,8 +75,40 @@ function fetchOuterTemp(callback){
 	});
 }
 
-function fetchBadtunnaTemp(callback){
-	//TODO
+function fetchHouseTempMinMax(callback_min, callback_max) {
+	$.ajax({
+		url: getDomain()+'/innerTemperature/min',
+		type: 'GET',
+		success: function (data) {
+			callback_min(data);
+		}
+	});
+
+	$.ajax({
+		url: getDomain()+'/innerTemperature/max',
+		type: 'GET',
+		success: function (data) {
+			callback_max(data);
+		}
+	});
+}
+
+function fetchOuterTempMinMax(callback_min, callback_max) {
+	$.ajax({
+		url: getDomain()+'/outerTemperature/min',
+		type: 'GET',
+		success: function (data) {
+			callback_min(data);
+		}
+	});
+
+	$.ajax({
+		url: getDomain()+'/outerTemperature/max',
+		type: 'GET',
+		success: function (data) {
+			callback_max(data);
+		}
+	});
 }
 
 function fetchCameraImg(callback) {
@@ -114,9 +151,27 @@ function setOuterTemp(obj){
 }
 
 function setCameraImg(src) {
+	$('.camera-img').attr('src', "");
 	$('.camera-img').attr('src', src);
 }
 
 function setHotTubTemp(obj) {
 	$('.hot-tub-temp').text(obj.temperature + '°C');
+}
+
+function setHouseTempMin(obj) {
+	$('.house-temp-min').text('Min: '+ obj.outlier_temperature + '°C');
+}
+
+function setHouseTempMax(obj) {
+	$('.house-temp-max').text('Max: '+ obj.outlier_temperature + '°C');
+}
+
+function setOuterTempMin(obj) {
+	$('.outer-temp-min').text('Min: '+ obj.outlier_temperature + '°C');
+}
+
+function setOuterTempMax(obj) {
+	console.log(obj);
+	$('.outer-temp-max').text('Max: '+ obj.outlier_temperature + '°C');
 }
