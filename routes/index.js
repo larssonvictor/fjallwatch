@@ -10,4 +10,8 @@ router.get('/webcamera', function(req, res, next) {
 	res.render('webcamera', {title: 'webcamera'});
 });
 
+router.get('/house-temperature', function(req, res, next){
+	res.render('houseTemperature', {title:'house-temperature'});
+});
+
 module.exports = router;

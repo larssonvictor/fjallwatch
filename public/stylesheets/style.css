@@ -36,6 +36,11 @@ a {
 	margin: 15px !important;
 }
 
+.spinner-container{
+	width: 100%;
+	text-align: center;
+}
+
 
 
 /* Panels */

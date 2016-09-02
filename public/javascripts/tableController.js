@@ -36,6 +36,9 @@ function getDomain(){
 }
 
 function updateTable(){
+	$('.camera-img').attr('src', "");
+
+
 	fetchHouseTemp(setHouseTemp);
 	fetchOuterTemp(setOuterTemp);
 	fetchCameraImg(setCameraImg);
@@ -54,6 +57,16 @@ function route(dest) {
 function resize() {
 	setImageSize();
 }
+
+function stopSpinner() {
+	$('.spinner-container').hide();
+}
+
+function startSpinenr(){
+	$('.spinner-container').show();
+}
+
+/*--- Fetching data ---*/
 
 function fetchHouseTemp(callback){
 	$.ajax({
@@ -116,6 +129,7 @@ function fetchCameraImg(callback) {
 		url: getDomain()+'/cameraImage',
 		type: 'GET',
 		success: function (data) {
+			
 			callback(data);
 		}
 	});
@@ -131,11 +145,13 @@ function fetchHotTub(callback) {
 	// 	}
 	// });
 	
-	var obj = {temperature: Math.floor((Math.random() * 20) + 1)}
+	// var obj = {temperature: Math.floor((Math.random() * 20) + 1)}
 
-	callback(obj);
+	// callback(obj);
 }
 
+
+/*--- Setters ---*/
 function setImageSize() {
 	console.log($('.camera-panel-body').width());
 	var width = $('.camera-panel-body').width();
@@ -151,12 +167,12 @@ function setOuterTemp(obj){
 }
 
 function setCameraImg(src) {
-	$('.camera-img').attr('src', "");
+	// stopSpinner();
 	$('.camera-img').attr('src', src);
 }
 
 function setHotTubTemp(obj) {
-	$('.hot-tub-temp').text(obj.temperature + '°C');
+	$('.hot-tub-temp').text('('+obj.temperature + '°C)');
 }
 
 function setHouseTempMin(obj) {
@@ -172,6 +188,5 @@ function setOuterTempMin(obj) {
 }
 
 function setOuterTempMax(obj) {
-	console.log(obj);
 	$('.outer-temp-max').text('Max: '+ obj.outlier_temperature + '°C');
 }
