@@ -32,7 +32,7 @@ function main() {
 }
 
 function getDomain(){
-	return 'http://192.168.1.2:8282/api';
+	return 'http://localhost:8282/api';
 }
 
 function updateTable(){
