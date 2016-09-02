@@ -21,15 +21,14 @@ exports.getInnerTemperature = function(callback){
 				status: x[2],
 				temperature: x[3]
 			}
-			// var data = JSON.parse(request.responseText);
-			console.log('inne temp: '+ obj.temperature);
+			// console.log('inne temp: '+ obj.temperature);
 			callback(obj);
 		} else {
-			console.log("FAIL!!!!" + request.responseText);
+			console.log("Fail at " + request.responseText);
 		}
 	}
-	request.onerror = function(err) {
-		console.log("ERROR!!!!");
+	request.onerror = function() {
+		console.log("Error while fetching inner temperature");
 	}
 	request.send();
 };
@@ -46,15 +45,19 @@ exports.getOuterTemperature = function(callback){
 				status: x[2],
 				temperature: x[3]
 			}
-			// var data = JSON.parse(request.responseText);
-			console.log('ute temp: '+ obj.temperature);
+			// console.log('ute temp: '+ obj.temperature);
 			callback(obj);
 		} else {
-			console.log("FAIL!!!!" + request.responseText);
+			console.log("Fail at " + request.responseText);
 		}
 	}
-	request.onerror = function(err) {
-		console.log("ERROR!!!!");
+	request.onerror = function() {
+		console.log("Error while fetching outer temperature");
 	}
 	request.send();
 };
+
+/* Private Functions */
+function saveToDb(arguments) {
+	
+}

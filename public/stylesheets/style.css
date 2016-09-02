@@ -11,10 +11,6 @@ a {
 	padding-bottom: 15px;
 }
 
-.houseTempPanel{
-
-}
-
 .dyn-font-size{
 	font-size: 30px;
     font-size: 3.5vw;
@@ -24,6 +20,40 @@ a {
 	text-align: center;
 }
 
+.toTheLeft{
+	float: left;
+  	width: 50%;
+  	overflow: hidden;
+  	vertical-align: middle;
+}
+
+.toTheRight{
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.no-margin{
+	margin: 15px !important;
+}
+
+
+
+/* Panels */
+.house-temp-panel:hover{
+	box-shadow: 4px 4px 6px #17212b;
+}
+
+.outer-temp-panel:hover{
+	box-shadow: 4px 4px 6px #17212b;
+}
+
+.hot-tub-temp-panel:hover{
+	box-shadow: 4px 4px 6px #17212b;
+}
+
+
+
+/* Background colors */
 .green-background{
 	background-color: #5CB85C !important;
 }
