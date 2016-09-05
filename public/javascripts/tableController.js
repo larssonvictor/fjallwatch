@@ -33,12 +33,16 @@ function main() {
 
 }
 
+/**
+ * Change ip-address for the connection to the backend 
+ * @return {String} [domain for the backend]
+ */
 function getDomain(){
 	return 'http://localhost:8282/api';
 }
 
 function updateTable(){
-	$('.camera-img').attr('src', "");
+	// $('.camera-img').attr('src', "");
 
 
 	fetchHouseTemp(setHouseTemp);
@@ -133,7 +137,6 @@ function fetchCameraImg(callback) {
 		url: getDomain()+'/cameraImage',
 		type: 'GET',
 		success: function (data) {
-			
 			callback(data);
 		}
 	});
@@ -177,9 +180,7 @@ function getTimestamp() {
 
 /*--- Setters ---*/
 function setLastUpdateTime(id) {
-	var timestamp = getTimestamp();
-	console.log(id + ' ' + timestamp);
-	$('.last-update-'+id).attr('title', 'Senast uppdaterad: ' +getTimestamp()).tooltip('fixTitle');
+	$('.last-update-'+id).attr('title', 'Senast uppdaterad: '+getTimestamp()).tooltip('fixTitle');
 }
 
 function setImageSize() {
@@ -198,6 +199,7 @@ function setOuterTemp(obj){
 
 function setCameraImg(src) {
 	// stopSpinner();
+	$('.camera-img').attr('src', "");
 	$('.camera-img').attr('src', src);
 }
 
