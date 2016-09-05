@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip(); 
+
 	$('.house-temp-panel').on('click', function(){
 		route('house-temperature');
 	});
@@ -73,6 +75,7 @@ function fetchHouseTemp(callback){
 		url: getDomain()+'/innerTemperature',
 		type: 'GET',
 	   	success: function(data){
+	   		setLastUpdateTime('house');
 	   		callback(data);
 	   	}
 	});
@@ -83,6 +86,7 @@ function fetchOuterTemp(callback){
 		url: getDomain()+'/outerTemperature',
 		type: 'GET',
 	   	success: function(data){
+	   		setLastUpdateTime('outer');
 	   		callback(data);
 	   	}
 	});
@@ -140,7 +144,7 @@ function fetchHotTub(callback) {
 	// 	url: getDomain()+'/hotTubTemperature',
 	// 	type: 'GET',
 	// 	success: function (data) {
-	// 		console.log(data);
+	// 		setLastUpdateTime('hot-tub');
 	// 		callback(data);
 	// 	}
 	// });
@@ -150,8 +154,34 @@ function fetchHotTub(callback) {
 	// callback(obj);
 }
 
+function getTimestamp() {
+	var date = new Date();
+
+	var day  = date.getDate();
+	//getMonth() returns 0-11, that'swhy +1 
+	var month = date.getMonth() +1;
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+
+	if (hours < 10) {
+		hours = '0' + hours;
+	}
+
+	if (minutes < 10) {
+		minutes = '0' + minutes;
+	}
+
+	return day +'/'+month+' '+hours+':'+minutes;
+}
+
 
 /*--- Setters ---*/
+function setLastUpdateTime(id) {
+	var timestamp = getTimestamp();
+	console.log(id + ' ' + timestamp);
+	$('.last-update-'+id).attr('title', 'Senast uppdaterad: ' +getTimestamp()).tooltip('fixTitle');
+}
+
 function setImageSize() {
 	console.log($('.camera-panel-body').width());
 	var width = $('.camera-panel-body').width();

@@ -41,6 +41,20 @@ a {
 	text-align: center;
 }
 
+.last-update:active{
+	/* white */
+	color: #EBEBEB;
+}
+
+.last-update:visited{
+	/* white */
+	color: #EBEBEB;
+}
+
+.last-update:hover{
+	/* Dark grey */
+	color: #4E5D6C;
+}
 
 
 /* Panels */
