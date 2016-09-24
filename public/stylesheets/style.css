@@ -58,16 +58,8 @@ a {
 
 
 /* Panels */
-.house-temp-panel:hover{
-	box-shadow: 4px 4px 6px #17212b;
-}
-
-.outer-temp-panel:hover{
-	box-shadow: 4px 4px 6px #17212b;
-}
-
-.hot-tub-temp-panel:hover{
-	box-shadow: 4px 4px 6px #17212b;
+.clickable:hover{
+	opacity: 0.9;
 }
 
 
@@ -95,4 +87,15 @@ a {
 
 .dark-yellow-background{
 	background-color: #EEA236 !important;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 50px 0 0 0;
+    }
+
+    .dyn-font-size{
+		font-size: 18px;
+	    font-size: 10vw;
+	}
 }

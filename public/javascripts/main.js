@@ -38,7 +38,7 @@ function main() {
  * @return {String} [domain for the backend]
  */
 function getDomain(){
-	return 'http://localhost:8282/api';
+	return 'http://192.168.0.125:8282/api';
 }
 
 function updateTable(){

@@ -8,6 +8,7 @@ var domain = 'http://fjallet.mine.nu:81';
 init();
 
 function init() {
+	log('Starting server...')
 	// body...
 }
 
@@ -23,14 +24,14 @@ exports.getInnerTemperature = function(callback){
 				status: x[2],
 				temperature: x[3]
 			}
-			// console.log('inne temp: '+ obj.temperature);
+			// log('inne temp: '+ obj.temperature);
 			callback(obj);
 		} else {
-			console.log("Fail at " + request.responseText);
+			log("Fail at " + request.responseText);
 		}
 	}
 	request.onerror = function() {
-		console.log("Error while fetching inner temperature");
+		log("Error while fetching inner temperature");
 	}
 	request.send();
 };
@@ -47,14 +48,13 @@ exports.getOuterTemperature = function(callback){
 				status: x[2],
 				temperature: x[3]
 			}
-			// console.log('ute temp: '+ obj.temperature);
 			callback(obj);
 		} else {
-			console.log("Fail at " + request.responseText);
+			log("Fail at " + request.responseText);
 		}
 	}
 	request.onerror = function() {
-		console.log("Error while fetching outer temperature");
+		log("Error while fetching outer temperature");
 	}
 	request.send();
 };
@@ -71,14 +71,13 @@ exports.getInnerTemperatureOutliers = function(outlier,callback){
 				status: x[2],
 				outlier_temperature: x[3]
 			}
-			// console.log('ute temp: '+ obj.temperature);
 			callback(obj);
 		} else {
-			console.log("Fail at " + request.responseText);
+			log("Fail at " + request.responseText);
 		}
 	}
 	request.onerror = function() {
-		console.log("Error while fetching "+ outlier +" outer temperature");
+		log("Error while fetching "+ outlier +" outer temperature");
 	}
 	request.send();
 };
@@ -95,16 +94,20 @@ exports.getOuterTemperatureOutliers = function(outlier,callback){
 				status: x[2],
 				outlier_temperature: x[3]
 			}
-			// console.log('ute temp: '+ obj.temperature);
 			callback(obj);
 		} else {
-			console.log("Fail at " + request.responseText);
+			log("Fail at " + request.responseText);
 		}
 	}
 	request.onerror = function() {
-		console.log("Error while fetching "+ outlier +" outer temperature");
+		log("Error while fetching "+ outlier +" outer temperature");
 	}
 	request.send();
 };
 
 /* Private Functions */
+function log(msg) {
+	var d = new Date().toLocaleTimeString();
+	console.log(d+ ' | ' + msg);
+}
+
